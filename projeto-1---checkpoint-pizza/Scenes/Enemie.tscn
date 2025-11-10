@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://ougoeim4ob2h"]
+
+[ext_resource type="Texture2D" uid="uid://bjd0mulhhxyif" path="res://Sprites/Pixel art - Tomate do mal.png" id="1_4g6re"]
+[ext_resource type="Texture2D" uid="uid://becc2crhp1qjq" path="res://Sprites/Pixel art - Fatia de queijo.png" id="2_n8vbs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt3dk"]
+atlas = ExtResource("1_4g6re")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4lt4"]
+atlas = ExtResource("1_4g6re")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b52on"]
+atlas = ExtResource("1_4g6re")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m83ld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt3dk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4lt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b52on")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2gfl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpieb"]
+size = Vector2(56, 20)
+
+[node name="Enemie" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 8
+collision_mask = 7
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m83ld")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.186346
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_t2gfl")
+
+[node name="Obstáculo" type="AnimatableBody2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstáculo"]
+position = Vector2(0, 23)
+texture = ExtResource("2_n8vbs")
+
+[node name="Col" type="CollisionShape2D" parent="Obstáculo"]
+position = Vector2(0, 26)
+shape = SubResource("RectangleShape2D_vpieb")
+one_way_collision = true

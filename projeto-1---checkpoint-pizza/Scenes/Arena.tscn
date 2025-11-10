@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://cogjerj38n3fp"]
+
+[ext_resource type="Script" path="res://Scripts/ArenaScpt.gd" id="1_dm7qp"]
+[ext_resource type="PackedScene" uid="uid://bl4o7lahnqtdx" path="res://Scenes/Obstáculo.tscn" id="1_q6qt1"]
+[ext_resource type="PackedScene" uid="uid://d3d4s3t2ee03k" path="res://Scenes/Player.tscn" id="2_1cgt5"]
+[ext_resource type="PackedScene" uid="uid://ougoeim4ob2h" path="res://Scenes/Enemie.tscn" id="3_5ixuu"]
+[ext_resource type="PackedScene" uid="uid://cee0cs1ndum7x" path="res://Scenes/HUD.tscn" id="4_mpen6"]
+[ext_resource type="PackedScene" uid="uid://dne1fbto8h1ss" path="res://Scenes/FlyEnemie.tscn" id="4_ymob3"]
+[ext_resource type="Texture2D" uid="uid://jkyrafs7gnfa" path="res://Sprites/Pixel art - Fundo.png" id="5_3pfxu"]
+[ext_resource type="AudioStream" uid="uid://e7vcfbl8okpn" path="res://Sons/Som de morte 2(2).wav" id="6_ngu8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feulb"]
+size = Vector2(3196, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2k8wm"]
+size = Vector2(33, 8e+07)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otqbq"]
+size = Vector2(35, 8e+06)
+
+[node name="Arena" type="Node2D"]
+script = ExtResource("1_dm7qp")
+obstacle = ExtResource("1_q6qt1")
+enemie = ExtResource("3_5ixuu")
+fly_enemie = ExtResource("4_ymob3")
+
+[node name="HUD" parent="." instance=ExtResource("4_mpen6")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 800)
+
+[node name="BG" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_right = 480.0
+offset_bottom = 800.0
+texture = ExtResource("5_3pfxu")
+
+[node name="PlatformContainer" type="Node2D" parent="."]
+
+[node name="Obstaculo" parent="PlatformContainer" instance=ExtResource("1_q6qt1")]
+position = Vector2(197, 598)
+
+[node name="Pizza" parent="." instance=ExtResource("2_1cgt5")]
+position = Vector2(197, 576)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(197, 576)
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_right = 320
+limit_bottom = 800
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+position = Vector2(250, 285)
+collision_layer = 4
+collision_mask = 11
+
+[node name="Col" type="CollisionShape2D" parent="Camera2D/Area2D"]
+shape = SubResource("RectangleShape2D_feulb")
+
+[node name="Wall1" type="Area2D" parent="Camera2D"]
+position = Vector2(-210, 0)
+collision_layer = 16
+
+[node name="Col" type="CollisionShape2D" parent="Camera2D/Wall1"]
+position = Vector2(-13.5, -19.5)
+shape = SubResource("RectangleShape2D_2k8wm")
+
+[node name="Wall2" type="Area2D" parent="Camera2D"]
+position = Vector2(145, 0)
+collision_layer = 16
+
+[node name="Col" type="CollisionShape2D" parent="Camera2D/Wall2"]
+position = Vector2(5.5, 221.5)
+shape = SubResource("RectangleShape2D_otqbq")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ngu8h")
+volume_db = 10.0
+
+[connection signal="player_death" from="Pizza" to="." method="_on_pizza_player_death"]
+[connection signal="body_entered" from="Camera2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Camera2D/Wall1" to="." method="_on_wall_1_body_entered"]
+[connection signal="body_entered" from="Camera2D/Wall2" to="." method="_on_wall_2_body_entered"]

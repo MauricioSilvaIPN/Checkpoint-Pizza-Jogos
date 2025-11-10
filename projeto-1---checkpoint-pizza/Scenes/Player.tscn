@@ -1,0 +1,176 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3d4s3t2ee03k"]
+
+[ext_resource type="Texture2D" uid="uid://dop2cr7m71vae" path="res://Sprites/Pixel gif - Player Jump.png" id="1_8kp5y"]
+[ext_resource type="Script" path="res://Scripts/playerScpt.gd" id="1_vds0i"]
+[ext_resource type="AudioStream" uid="uid://cw418b7nmuoli" path="res://Sons/Som de pulo.wav" id="3_d67g2"]
+[ext_resource type="AudioStream" uid="uid://e7vcfbl8okpn" path="res://Sons/Som de morte 2(2).wav" id="4_grlgc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r20vv"]
+radius = 12.0104
+
+[sub_resource type="Animation" id="Animation_cq0l2"]
+resource_name = "Fly"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_8kp5y")]
+}
+
+[sub_resource type="Animation" id="Animation_vg881"]
+resource_name = "Jump"
+length = 0.65
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_8kp5y")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_swcrc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_8kp5y")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cqxyy"]
+_data = {
+"Fly": SubResource("Animation_cq0l2"),
+"Jump": SubResource("Animation_vg881"),
+"RESET": SubResource("Animation_swcrc")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vg68k"]
+radius = 12.5
+
+[node name="Pizza" type="CharacterBody2D"]
+collision_mask = 22
+script = ExtResource("1_vds0i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_8kp5y")
+hframes = 6
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 3.5)
+shape = SubResource("CircleShape2D_r20vv")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cqxyy")
+}
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Col" type="CollisionShape2D" parent="Detector"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-0.75, 3.5)
+shape = SubResource("CircleShape2D_vg68k")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_d67g2")
+volume_db = 10.0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_grlgc")
+volume_db = 10.0
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

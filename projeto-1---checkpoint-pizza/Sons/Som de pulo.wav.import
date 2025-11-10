@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cw418b7nmuoli"
+path="res://.godot/imported/Som de pulo.wav-6c5ed6af964ab08e7de86734953e8a2e.sample"
+
+[deps]
+
+source_file="res://Sons/Som de pulo.wav"
+dest_files=["res://.godot/imported/Som de pulo.wav-6c5ed6af964ab08e7de86734953e8a2e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

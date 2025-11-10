@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://dne1fbto8h1ss"]
+
+[ext_resource type="Script" path="res://Scripts/FlyEnemieScpt.gd" id="1_ekmxy"]
+[ext_resource type="Texture2D" uid="uid://bbthshgnfdxsn" path="res://Sprites/Pixel art - Tomate do mal Voador.png" id="2_vows5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncoso"]
+atlas = ExtResource("2_vows5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euepc"]
+atlas = ExtResource("2_vows5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7rv1"]
+atlas = ExtResource("2_vows5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omg5n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncoso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euepc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7rv1")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7da"]
+size = Vector2(26, 20)
+
+[node name="FlyEnemie" type="CharacterBody2D" groups=["FlyEnem"]]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_ekmxy")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_omg5n")
+animation = &"Fly"
+autoplay = "Fly"
+frame_progress = 0.448152
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_0h7da")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(50, 0)
+collision_mask = 16
+collide_with_areas = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-5, 5)
+scale = Vector2(3.5, 1)
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

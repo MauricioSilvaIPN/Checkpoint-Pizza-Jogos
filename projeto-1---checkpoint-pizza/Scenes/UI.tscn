@@ -1,0 +1,301 @@
+[gd_scene load_steps=17 format=3 uid="uid://b1y3qu00ykw1u"]
+
+[ext_resource type="FontFile" uid="uid://c21e7qw8ydadh" path="res://Micro_5/Micro5-Regular.ttf" id="1_dnaqk"]
+[ext_resource type="Script" path="res://Scripts/UIScpt.gd" id="1_h7mdm"]
+[ext_resource type="Texture2D" uid="uid://e8ux7dha523c" path="res://Sprites/Pixel art - GameMenu.png" id="2_rxid7"]
+[ext_resource type="AudioStream" uid="uid://bqv3wcrhhgtdu" path="res://Sons/Som do menu.wav" id="4_un4oo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8rr7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vrg18"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_da5bf"]
+
+[sub_resource type="Theme" id="Theme_3bda7"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_p8rr7")
+Button/styles/focus = SubResource("StyleBoxEmpty_vrg18")
+Button/styles/hover = SubResource("StyleBoxEmpty_da5bf")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4nwel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_huj0p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tfrdf"]
+
+[sub_resource type="Theme" id="Theme_w2mlo"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_4nwel")
+Button/styles/focus = SubResource("StyleBoxEmpty_huj0p")
+Button/styles/hover = SubResource("StyleBoxEmpty_tfrdf")
+
+[sub_resource type="Animation" id="Animation_ahidp"]
+resource_name = "Change"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LogoBG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(240, 300), Vector2(240, -250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScoreBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(51.5, 347), Vector2(51.5, -250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(174.5, 500), Vector2(174.5, -250)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Footer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(135.5, 757), Vector2(135.5, -250)]
+}
+
+[sub_resource type="Animation" id="Animation_hm6p3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LogoBG:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LogoBG:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScoreBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(51.5, 347)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HBoxContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(174.5, 500)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Footer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(135.5, 757)]
+}
+
+[sub_resource type="Animation" id="Animation_bmmq6"]
+resource_name = "Start"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LogoBG:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53ggs"]
+_data = {
+"Change": SubResource("Animation_ahidp"),
+"RESET": SubResource("Animation_hm6p3"),
+"Start": SubResource("Animation_bmmq6")
+}
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h7mdm")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 800.0
+color = Color(0.121569, 0.113725, 0.270588, 1)
+
+[node name="LogoBG" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(240, 300)
+scale = Vector2(3, 3)
+texture = ExtResource("2_rxid7")
+
+[node name="ScoreBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -53.0
+offset_right = 188.5
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ScoreBox"]
+z_index = 1
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_dnaqk")
+theme_override_font_sizes/font_size = 50
+text = "Seu maior recorde é de:"
+horizontal_alignment = 1
+
+[node name="MaxScoreN" type="Label" parent="ScoreBox"]
+z_index = 1
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_dnaqk")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.5
+offset_top = 100.0
+offset_right = 65.5
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+focus_neighbor_top = NodePath("../Credits")
+theme = SubResource("Theme_3bda7")
+theme_override_colors/font_hover_pressed_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_colors/font_hover_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_colors/font_focus_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_dnaqk")
+theme_override_font_sizes/font_size = 50
+text = "Jogar"
+flat = true
+
+[node name="Credits" type="Button" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Play")
+theme = SubResource("Theme_w2mlo")
+theme_override_colors/font_hover_pressed_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_colors/font_focus_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_dnaqk")
+theme_override_font_sizes/font_size = 50
+text = "Créditos"
+flat = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_53ggs")
+}
+autoplay = "Start"
+
+[node name="ButtonFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_un4oo")
+volume_db = 10.0
+
+[node name="Footer" type="Label" parent="."]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.5
+offset_top = -43.0
+offset_right = 104.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_dnaqk")
+theme_override_font_sizes/font_size = 25
+text = "© 2025 Checkpoint Pizza "
+
+[connection signal="pressed" from="HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/Credits" to="." method="_on_credits_pressed"]

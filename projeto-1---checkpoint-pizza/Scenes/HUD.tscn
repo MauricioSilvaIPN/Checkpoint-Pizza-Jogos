@@ -1,0 +1,231 @@
+[gd_scene load_steps=13 format=3 uid="uid://cee0cs1ndum7x"]
+
+[ext_resource type="Script" path="res://Scripts/HUDScpt.gd" id="1_547l1"]
+[ext_resource type="Texture2D" uid="uid://b4sq7g34p2rup" path="res://Sprites/Pixel art - Pizza Pontuação.png" id="1_oq5e5"]
+[ext_resource type="FontFile" uid="uid://c21e7qw8ydadh" path="res://Micro_5/Micro5-Regular.ttf" id="2_x5vrc"]
+[ext_resource type="AudioStream" uid="uid://bqv3wcrhhgtdu" path="res://Sons/Som do menu.wav" id="4_307t0"]
+
+[sub_resource type="Animation" id="Animation_0yvbv"]
+resource_name = "Chances"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChancesBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(500, 319.5), Vector2(167.5, 319.5)]
+}
+
+[sub_resource type="Animation" id="Animation_osght"]
+resource_name = "GameOver"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(525, 290), Vector2(153, 290)]
+}
+
+[sub_resource type="Animation" id="Animation_fw3b3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(525, 290)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChancesBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(500, 319.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s7wb8"]
+_data = {
+"Chances": SubResource("Animation_0yvbv"),
+"GameOver": SubResource("Animation_osght"),
+"RESET": SubResource("Animation_fw3b3")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_roo0g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k708t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_27k4m"]
+
+[sub_resource type="Theme" id="Theme_qfobq"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_roo0g")
+Button/styles/focus = SubResource("StyleBoxEmpty_k708t")
+Button/styles/hover = SubResource("StyleBoxEmpty_27k4m")
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_547l1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(397, 24)
+texture = ExtResource("1_oq5e5")
+
+[node name="Text" type="Label" parent="."]
+texture_filter = 1
+offset_left = 383.0
+offset_top = 31.0
+offset_right = 401.0
+offset_bottom = 82.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_x5vrc")
+theme_override_font_sizes/font_size = 50
+text = "0
+"
+
+[node name="GameOver" type="Label" parent="."]
+texture_filter = 1
+offset_left = 525.0
+offset_top = 290.0
+offset_right = 711.0
+offset_bottom = 341.0
+theme_override_colors/font_color = Color(0.843137, 0, 0.117647, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("2_x5vrc")
+theme_override_font_sizes/font_size = 50
+text = "Fim de Jogo"
+
+[node name="Starting" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -25.5
+offset_right = 9.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_x5vrc")
+theme_override_font_sizes/font_size = 50
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s7wb8")
+}
+
+[node name="ChancesBox" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 260.0
+offset_top = -80.5
+offset_right = 405.0
+offset_bottom = 80.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Text" type="Label" parent="ChancesBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_x5vrc")
+theme_override_font_sizes/font_size = 50
+text = "Você tem
+"
+horizontal_alignment = 1
+
+[node name="ChancesN" type="Label" parent="ChancesBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_x5vrc")
+theme_override_font_sizes/font_size = 50
+text = "
+"
+horizontal_alignment = 1
+
+[node name="Text2" type="Label" parent="ChancesBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_x5vrc")
+theme_override_font_sizes/font_size = 50
+text = "chances
+"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.5
+offset_top = -61.0
+offset_right = 164.5
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Code" type="LineEdit" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+secret = true
+
+[node name="Exit" type="Button" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_qfobq")
+theme_override_colors/font_hover_pressed_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_colors/font_hover_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_colors/font_focus_color = Color(0.301961, 0.301961, 0.301961, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("2_x5vrc")
+theme_override_font_sizes/font_size = 50
+text = "Voltar"
+flat = true
+
+[node name="ButtonFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_307t0")
+volume_db = 10.0
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]
+[connection signal="pressed" from="HBoxContainer/Exit" to="." method="_on_exit_pressed"]

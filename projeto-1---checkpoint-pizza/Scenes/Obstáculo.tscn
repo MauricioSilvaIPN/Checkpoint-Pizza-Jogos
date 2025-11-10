@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl4o7lahnqtdx"]
+
+[ext_resource type="Script" path="res://Scripts/obstaculoScpt.gd" id="1_aindp"]
+[ext_resource type="Texture2D" uid="uid://becc2crhp1qjq" path="res://Sprites/Pixel art - Fatia de queijo.png" id="1_d1cb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6i4v"]
+size = Vector2(47, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhmk4"]
+size = Vector2(47, 4)
+
+[node name="Obstaculo" type="AnimatableBody2D" groups=["Obstacles"]]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_aindp")
+texture_name = Array[String](["Sprites/Pixel art - Fatia de queijo", "Sprites/Pixel art - Azeitona", "Sprites/Pixel art - Tomate", "Sprites/Pixel art - Calabresa"])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d1cb3")
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_f6i4v")
+one_way_collision = true
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Col" type="CollisionShape2D" parent="Detector"]
+position = Vector2(-0.5, -5)
+shape = SubResource("RectangleShape2D_bhmk4")
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

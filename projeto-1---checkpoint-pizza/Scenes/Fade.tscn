@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://di4emenh0mcp2"]
+
+[ext_resource type="Script" path="res://Scripts/FadeScpt.gd" id="1_wp22n"]
+
+[node name="Fade" type="CanvasLayer"]
+script = ExtResource("1_wp22n")
+
+[node name="BG" type="ColorRect" parent="."]
+offset_left = -480.0
+offset_bottom = 800.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
