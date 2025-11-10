@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1pua5mbghghf"]
+
+[ext_resource type="Script" path="res://Scripts/CSScpt.gd" id="1_sdyb3"]
+[ext_resource type="FontFile" uid="uid://sbdio1p133wh" path="res://Fontes/Micro_5/Micro5-Regular.ttf" id="2_hr1pq"]
+[ext_resource type="Texture2D" uid="uid://cbtf4m7qvntkr" path="res://Sprites/RealSprites/UI/Pixel art - Carinha do Uirapuru (Button Normal).png" id="3_johhc"]
+[ext_resource type="Texture2D" uid="uid://cib6acfipg7us" path="res://Sprites/RealSprites/UI/Pixel art - Carinha do Uirapuru (Button Focus).png" id="4_qynde"]
+[ext_resource type="AudioStream" uid="uid://g0ngra0thft8" path="res://Sons/Som do menu.wav" id="5_kkgu0"]
+[ext_resource type="Texture2D" uid="uid://bsrlui4xp3685" path="res://Sprites/RealSprites/UI/Pixel art - Garota do Uirapuru (Button Normal).png" id="5_tlu8n"]
+[ext_resource type="Texture2D" uid="uid://cn8ltoi4f4ppd" path="res://Sprites/RealSprites/UI/Pixel art - Garota do Uirapuru (Button Focus).png" id="6_fajhy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_82eo2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_84jqn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcfu3"]
+
+[sub_resource type="Theme" id="Theme_vahi3"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_82eo2")
+Button/styles/focus = SubResource("StyleBoxEmpty_84jqn")
+Button/styles/hover = SubResource("StyleBoxEmpty_lcfu3")
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sdyb3")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 480.0
+color = Color(0.121569, 0.113725, 0.270588, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -188.5
+offset_right = 188.5
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("2_hr1pq")
+theme_override_font_sizes/font_size = 50
+text = "Escolha um personagem"
+
+[node name="Player01" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -60.0
+offset_right = -75.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture_normal = ExtResource("3_johhc")
+texture_pressed = ExtResource("3_johhc")
+texture_hover = ExtResource("4_qynde")
+texture_focused = ExtResource("4_qynde")
+stretch_mode = 3
+
+[node name="Player02" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 55.0
+offset_top = -52.0
+offset_right = 95.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture_normal = ExtResource("5_tlu8n")
+texture_pressed = ExtResource("5_tlu8n")
+texture_hover = ExtResource("6_fajhy")
+texture_focused = ExtResource("6_fajhy")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -59.0
+offset_right = 99.0
+grow_vertical = 0
+theme = SubResource("Theme_vahi3")
+theme_override_colors/font_hover_pressed_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_focus_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("2_hr1pq")
+theme_override_font_sizes/font_size = 50
+text = "Voltar"
+flat = true
+
+[node name="ButtonFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_kkgu0")
+volume_db = 10.0
+
+[connection signal="pressed" from="Player01" to="." method="_on_player_01_pressed"]
+[connection signal="pressed" from="Player02" to="." method="_on_player_02_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

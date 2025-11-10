@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://d35d47engy3lh"]
+
+[ext_resource type="Texture2D" uid="uid://cea4ptumfe2cb" path="res://Sprites/RealSprites/Pixel art - Queijo Derretido.png" id="2_n7k5y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4xik"]
+atlas = ExtResource("2_n7k5y")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0634"]
+atlas = ExtResource("2_n7k5y")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3ao5"]
+atlas = ExtResource("2_n7k5y")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kct75"]
+atlas = ExtResource("2_n7k5y")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftnxa"]
+atlas = ExtResource("2_n7k5y")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18e2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4xik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0634")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3ao5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kct75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftnxa")
+}],
+"loop": true,
+"name": &"Flow",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvykq"]
+height = 54.0
+
+[node name="Queijo" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_18e2x")
+animation = &"Flow"
+autoplay = "Flow"
+frame_progress = 0.658067
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -7)
+shape = SubResource("CapsuleShape2D_fvykq")
+disabled = true

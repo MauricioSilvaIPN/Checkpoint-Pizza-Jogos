@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://eerofo225400"]
+
+[ext_resource type="Script" path="res://Scripts/CalabresaScpt.gd" id="1_55gt0"]
+[ext_resource type="Texture2D" uid="uid://bw7ngar6owymc" path="res://Sprites/RealSprites/Pixel art - Calabresa.png" id="1_y8ut8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg0pu"]
+atlas = ExtResource("1_y8ut8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh0tb"]
+atlas = ExtResource("1_y8ut8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_du03k"]
+atlas = ExtResource("1_y8ut8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8secv"]
+atlas = ExtResource("1_y8ut8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmtki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg0pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh0tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_du03k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8secv")
+}],
+"loop": true,
+"name": &"Rotate",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw4x0"]
+radius = 12.0
+
+[node name="Calabresa" type="CharacterBody2D" groups=["Dangers"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_55gt0")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wmtki")
+animation = &"Rotate"
+autoplay = "Rotate"
+frame_progress = 0.78141
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_yw4x0")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+collision_mask = 2

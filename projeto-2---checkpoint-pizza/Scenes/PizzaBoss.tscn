@@ -1,0 +1,239 @@
+[gd_scene load_steps=16 format=3 uid="uid://bpp6nf0chyb5c"]
+
+[ext_resource type="Script" path="res://Scripts/PizzaBoss.gd" id="1_ificm"]
+[ext_resource type="Texture2D" uid="uid://bxc15tkdylauu" path="res://Sprites/RealSprites/PizzaBoss/Pixel art - Pizza Monstro (idle).png" id="1_royqg"]
+[ext_resource type="PackedScene" uid="uid://eerofo225400" path="res://Scenes/Calabresa.tscn" id="2_2aujb"]
+[ext_resource type="Texture2D" uid="uid://dj5erh8cyhpqw" path="res://Sprites/RealSprites/PizzaBoss/Pixel art - Pizza Monstro (Spawn).png" id="2_qhqev"]
+[ext_resource type="Texture2D" uid="uid://lomgrrxx6uy7" path="res://Sprites/RealSprites/PizzaBoss/Pixel art - Pizza Monstro (Death).png" id="3_735eu"]
+[ext_resource type="Script" path="res://Scripts/StatesScpt.gd" id="4_qfi36"]
+[ext_resource type="Script" path="res://Scripts/States/Idle.gd" id="6_bp8ot"]
+[ext_resource type="Script" path="res://Scripts/States/SpawnScpt.gd" id="7_6bi43"]
+[ext_resource type="Script" path="res://Scripts/States/DeathScpt.gd" id="8_oj28g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtdhr"]
+size = Vector2(33, 45)
+
+[sub_resource type="Animation" id="Animation_5x788"]
+resource_name = "Death"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_735eu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_f4dhv"]
+resource_name = "Idle"
+length = 0.45
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_royqg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_1jbfc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_royqg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y8t2y"]
+resource_name = "Spawn"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_qhqev")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("States/Spawn")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.366667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"create_dangers"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ny74j"]
+_data = {
+"Death": SubResource("Animation_5x788"),
+"Idle": SubResource("Animation_f4dhv"),
+"RESET": SubResource("Animation_1jbfc"),
+"Spawn": SubResource("Animation_y8t2y")
+}
+
+[node name="PizzaBoss" type="CharacterBody2D"]
+scale = Vector2(-1, 1)
+collision_layer = 4
+script = ExtResource("1_ificm")
+dangers = ExtResource("2_2aujb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_royqg")
+hframes = 4
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_qtdhr")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ny74j")
+}
+autoplay = "Idle"
+
+[node name="States" type="Node2D" parent="."]
+script = ExtResource("4_qfi36")
+
+[node name="Idle" type="Node2D" parent="States"]
+script = ExtResource("6_bp8ot")
+
+[node name="Death" type="Node2D" parent="States"]
+script = ExtResource("8_oj28g")
+
+[node name="Spawn" type="Node2D" parent="States"]
+script = ExtResource("7_6bi43")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 0.45
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
