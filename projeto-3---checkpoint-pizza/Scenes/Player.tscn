@@ -1,0 +1,173 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqsjyimyh0335"]
+
+[ext_resource type="Texture2D" uid="uid://csi6l7tphv0qt" path="res://Sprites/Pixel art - Uirapuru.png" id="1_5cet5"]
+[ext_resource type="Script" path="res://Scripts/PlayerScpt.gd" id="1_vp1ee"]
+[ext_resource type="AudioStream" uid="uid://vke7njn6krpx" path="res://Songs/Som de pulo.wav" id="3_j7mfn"]
+[ext_resource type="AudioStream" uid="uid://xgqt5i0ilb5r" path="res://Songs/Som de morte 2(2).wav" id="4_vvlsj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byeer"]
+size = Vector2(16, 19.5)
+
+[sub_resource type="Animation" id="Animation_c26i8"]
+resource_name = "Fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_5cet5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nku64"]
+resource_name = "Fly"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_5cet5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_3a0vv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_5cet5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u0vvs"]
+_data = {
+"Fall": SubResource("Animation_c26i8"),
+"Fly": SubResource("Animation_nku64"),
+"RESET": SubResource("Animation_3a0vv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72nmf"]
+size = Vector2(17, 20.5)
+
+[node name="Uirapuru" type="CharacterBody2D"]
+collision_mask = 10
+script = ExtResource("1_vp1ee")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5cet5")
+hframes = 2
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 6.25)
+shape = SubResource("RectangleShape2D_byeer")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u0vvs")
+}
+autoplay = "Fall"
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Col" type="CollisionShape2D" parent="Detector"]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(-1, 6)
+shape = SubResource("RectangleShape2D_72nmf")
+
+[node name="JumpFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_j7mfn")
+volume_db = 10.0
+
+[node name="DeathFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vvlsj")
+volume_db = 10.0
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

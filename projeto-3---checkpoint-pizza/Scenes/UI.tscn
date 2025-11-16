@@ -1,0 +1,317 @@
+[gd_scene load_steps=19 format=3 uid="uid://da5jlme8cjxr1"]
+
+[ext_resource type="FontFile" uid="uid://d1wxf7j2ox38g" path="res://Fonte/Micro_5/Micro5-Regular.ttf" id="1_0f210"]
+[ext_resource type="Script" path="res://Scripts/UIScpt.gd" id="1_obf5t"]
+[ext_resource type="Texture2D" uid="uid://bq6ap4l86te2w" path="res://Sprites/Pixel art - BG projeto 3.png" id="2_xxi51"]
+[ext_resource type="Texture2D" uid="uid://d0vhg0yli61ur" path="res://Sprites/Pixel art - BG Nuvens.png" id="3_7ccat"]
+[ext_resource type="Texture2D" uid="uid://bsd8q0yjjelo2" path="res://Sprites/Pixel art - Uirapuru Icon.png" id="4_fy70d"]
+[ext_resource type="AudioStream" uid="uid://0clqvuvk6103" path="res://Songs/Som do menu.wav" id="4_l7v15"]
+
+[sub_resource type="Animation" id="Animation_d8ptj"]
+resource_name = "Change"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(85, 0), Vector2(85, 315)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(192.5, 70), Vector2(192.5, 315)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScoreBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, 115), Vector2(10, 325)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Footer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(177, 265), Vector2(177, 315)]
+}
+
+[sub_resource type="Animation" id="Animation_841e6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuBox:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(85, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192.5, 70)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ScoreBox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 115)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Footer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(177, 265)]
+}
+
+[sub_resource type="Animation" id="Animation_h2sha"]
+resource_name = "Start"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuBox:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4jwpc"]
+_data = {
+"Change": SubResource("Animation_d8ptj"),
+"RESET": SubResource("Animation_841e6"),
+"Start": SubResource("Animation_h2sha")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w17sf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k1ytq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7r27"]
+
+[sub_resource type="Theme" id="Theme_4n2aj"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_w17sf")
+Button/styles/focus = SubResource("StyleBoxEmpty_k1ytq")
+Button/styles/hover = SubResource("StyleBoxEmpty_t7r27")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_em12l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ltg6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyxkr"]
+
+[sub_resource type="Theme" id="Theme_e6xv5"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_em12l")
+Button/styles/focus = SubResource("StyleBoxEmpty_0ltg6")
+Button/styles/hover = SubResource("StyleBoxEmpty_uyxkr")
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_obf5t")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Fundo" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(516, 0)
+
+[node name="BGImage" type="Sprite2D" parent="ParallaxBackground/Fundo"]
+texture_filter = 1
+texture = ExtResource("2_xxi51")
+centered = false
+
+[node name="Nuvens" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(516, 0)
+
+[node name="BGImage" type="Sprite2D" parent="ParallaxBackground/Nuvens"]
+texture_filter = 1
+texture = ExtResource("3_7ccat")
+centered = false
+
+[node name="Footer" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -50.0
+offset_right = 81.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_0f210")
+theme_override_font_sizes/font_size = 20
+text = "© 2025 Checkpoint Pizza"
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4jwpc")
+}
+autoplay = "Start"
+
+[node name="MenuBox" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_right = 185.0
+offset_bottom = 66.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="MenuBox"]
+layout_mode = 2
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_0f210")
+theme_override_font_sizes/font_size = 50
+text = "Flappy Mozza"
+
+[node name="Logo" type="TextureRect" parent="MenuBox"]
+layout_mode = 2
+texture = ExtResource("4_fy70d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.5
+offset_top = -87.5
+offset_right = 65.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Credits")
+theme = SubResource("Theme_4n2aj")
+theme_override_colors/font_hover_pressed_color = Color(0.332881, 0.332881, 0.332881, 1)
+theme_override_colors/font_hover_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_focus_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_0f210")
+theme_override_font_sizes/font_size = 50
+text = "Jogar"
+flat = true
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Play")
+theme = SubResource("Theme_e6xv5")
+theme_override_colors/font_hover_pressed_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_focus_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_0f210")
+theme_override_font_sizes/font_size = 50
+text = "Créditos"
+flat = true
+
+[node name="ScoreBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -42.5
+offset_right = 161.0
+offset_bottom = 3.5
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ScoreBox"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_0f210")
+theme_override_font_sizes/font_size = 20
+text = "Seu maior recorde é de:"
+horizontal_alignment = 1
+
+[node name="MaxScoreN" type="Label" parent="ScoreBox"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_0f210")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="ButtonFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_l7v15")
+volume_db = 10.0
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]

@@ -1,0 +1,119 @@
+[gd_scene load_steps=16 format=3 uid="uid://bci2hdqbvuw2t"]
+
+[ext_resource type="Texture2D" uid="uid://bydhrnfjb8phe" path="res://Sprites/Pixel art - Cortdador.png" id="1_4mfec"]
+[ext_resource type="Script" path="res://Scripts/ObstaclesScpt.gd" id="1_cjtaf"]
+[ext_resource type="Texture2D" uid="uid://doqetk2a1kc10" path="res://Sprites/Pixel art - Queijo.png" id="2_h3322"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy31j"]
+atlas = ExtResource("2_h3322")
+region = Rect2(0, 0, 48, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4mku"]
+atlas = ExtResource("2_h3322")
+region = Rect2(48, 0, 48, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqvxb"]
+atlas = ExtResource("2_h3322")
+region = Rect2(96, 0, 48, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryg30"]
+atlas = ExtResource("2_h3322")
+region = Rect2(144, 0, 48, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j5m0"]
+atlas = ExtResource("2_h3322")
+region = Rect2(192, 0, 48, 315)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0fjm0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy31j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4mku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqvxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryg30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j5m0")
+}],
+"loop": true,
+"name": &"Rotate",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahga0"]
+size = Vector2(28, 302)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd788"]
+atlas = ExtResource("1_4mfec")
+region = Rect2(0, 0, 48, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqrrh"]
+atlas = ExtResource("1_4mfec")
+region = Rect2(48, 0, 48, 315)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5b4d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd788")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqrrh")
+}],
+"loop": true,
+"name": &"Rotate",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xw0o4"]
+radius = 19.5
+height = 313.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc4fe"]
+size = Vector2(27, 82)
+
+[node name="Obstacles" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_cjtaf")
+
+[node name="Queijo" type="StaticBody2D" parent="."]
+position = Vector2(0, -50)
+collision_layer = 2
+
+[node name="Anim" type="AnimatedSprite2D" parent="Queijo"]
+sprite_frames = SubResource("SpriteFrames_0fjm0")
+animation = &"Rotate"
+autoplay = "Rotate"
+frame_progress = 0.63368
+
+[node name="Col" type="CollisionShape2D" parent="Queijo"]
+position = Vector2(2, -4)
+shape = SubResource("RectangleShape2D_ahga0")
+
+[node name="Cortador" type="StaticBody2D" parent="."]
+position = Vector2(0, 335)
+collision_layer = 2
+
+[node name="Anim" type="AnimatedSprite2D" parent="Cortador"]
+sprite_frames = SubResource("SpriteFrames_v5b4d")
+animation = &"Rotate"
+autoplay = "Rotate"
+flip_h = true
+flip_v = true
+
+[node name="Col" type="CollisionShape2D" parent="Cortador"]
+position = Vector2(-1, 0.5)
+shape = SubResource("CapsuleShape2D_xw0o4")
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(11, 143)
+shape = SubResource("RectangleShape2D_lc4fe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

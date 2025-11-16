@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://bentslbeskr7d"]
+
+[ext_resource type="Script" path="res://Scripts/CreditsScpt.gd" id="1_0ca0v"]
+[ext_resource type="FontFile" uid="uid://d1wxf7j2ox38g" path="res://Fonte/Micro_5/Micro5-Regular.ttf" id="1_1yt36"]
+[ext_resource type="AudioStream" uid="uid://0clqvuvk6103" path="res://Songs/Som do menu.wav" id="3_k3r66"]
+[ext_resource type="Texture2D" uid="uid://dkvqtctvccequ" path="res://Sprites/Logo - Referência.jpg" id="4_1iug5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bh85a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqeb8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efnt1"]
+
+[sub_resource type="Theme" id="Theme_l2qqn"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_bh85a")
+Button/styles/focus = SubResource("StyleBoxEmpty_eqeb8")
+Button/styles/hover = SubResource("StyleBoxEmpty_efnt1")
+
+[node name="Créditos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ca0v")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 516.0
+offset_bottom = 315.0
+mouse_filter = 2
+color = Color(0.121569, 0.113725, 0.270588, 1)
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -100.5
+offset_right = 135.0
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_1yt36")
+theme_override_font_sizes/font_size = 30
+text = "Programador - Maurício
+Artistas - Danilo e Pedro
+Sons - João
+
+Este jogo é uma distribuição
+da Checkpoint Pizza"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 55.0
+grow_vertical = 0
+theme = SubResource("Theme_l2qqn")
+theme_override_colors/font_hover_pressed_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_hover_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_focus_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("1_1yt36")
+theme_override_font_sizes/font_size = 50
+text = "Voltar"
+flat = true
+
+[node name="ButtonFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_k3r66")
+volume_db = 10.0
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(453, 251)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_1iug5")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

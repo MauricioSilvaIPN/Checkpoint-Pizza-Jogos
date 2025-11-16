@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://cldoxudt5ri5q"]
+
+[ext_resource type="Script" path="res://Scripts/MainScpt.gd" id="1_47bco"]
+[ext_resource type="PackedScene" uid="uid://bqsjyimyh0335" path="res://Scenes/Player.tscn" id="1_tjwvi"]
+[ext_resource type="PackedScene" uid="uid://bci2hdqbvuw2t" path="res://Scenes/Obstacles.tscn" id="2_f5qgi"]
+[ext_resource type="PackedScene" uid="uid://bwnxj60blixgh" path="res://Scenes/HUD.tscn" id="4_l7d48"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj1b1"]
+size = Vector2(16, 331)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58gjd"]
+size = Vector2(1232, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbogs"]
+size = Vector2(1254, 20)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_47bco")
+danger = ExtResource("2_f5qgi")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Fundo" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(516, 0)
+
+[node name="BG" type="ColorRect" parent="ParallaxBackground/Fundo"]
+offset_right = 516.0
+offset_bottom = 315.0
+mouse_filter = 2
+color = Color(0.422304, 0.54178, 0.837426, 1)
+
+[node name="ObstaclesContainer" type="Node2D" parent="."]
+
+[node name="Obstacles" parent="ObstaclesContainer" instance=ExtResource("2_f5qgi")]
+position = Vector2(500, 0)
+
+[node name="Uirapuru" parent="." instance=ExtResource("1_tjwvi")]
+position = Vector2(80, 130)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_bottom = 315
+
+[node name="PlatformDelete" type="Area2D" parent="Camera2D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Col" type="CollisionShape2D" parent="Camera2D/PlatformDelete"]
+position = Vector2(-7, 155.5)
+shape = SubResource("RectangleShape2D_nj1b1")
+
+[node name="FallZone" type="Area2D" parent="Camera2D"]
+collision_layer = 0
+
+[node name="Col" type="CollisionShape2D" parent="Camera2D/FallZone"]
+position = Vector2(617, 329)
+shape = SubResource("RectangleShape2D_58gjd")
+
+[node name="Wall" type="StaticBody2D" parent="Camera2D"]
+collision_layer = 8
+
+[node name="Col" type="CollisionShape2D" parent="Camera2D/Wall"]
+position = Vector2(617, 0)
+shape = SubResource("RectangleShape2D_vbogs")
+
+[node name="HUD" parent="." instance=ExtResource("4_l7d48")]
+
+[connection signal="player_death" from="Uirapuru" to="." method="_on_uirapuru_player_death"]
+[connection signal="area_entered" from="Camera2D/PlatformDelete" to="." method="_on_platform_delete_area_entered"]
+[connection signal="body_entered" from="Camera2D/FallZone" to="." method="_on_fall_zone_body_entered"]
